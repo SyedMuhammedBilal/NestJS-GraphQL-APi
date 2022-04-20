@@ -1,0 +1,27 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CitiesModel {
+  city_id: Float!
+  city_name: String!
+  state_id: Float!
+  state_code: String!
+  city_nominatim: String!
+  state_name: String!
+  country_id: Float!
+  country_code: String!
+  country_name: String!
+  city_latitude: Float!
+  city_longitude: Float!
+  city_wikiDataId: String!
+  bop_wikiDataId: String!
+  city_population: String!
+  city_osm_id: Float!
+  city_administrative_level: Float
+}
+
+type Query {
+  getAllCities: [CitiesModel!]!
+  getCity(city: String!): CitiesModel
+}
