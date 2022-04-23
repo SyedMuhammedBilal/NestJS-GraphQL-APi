@@ -1,73 +1,141 @@
+## NESTJS GraphQL APi
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+ <img src="https://i.ibb.co/tppN4yG/Group-2.png" alt="Group-2" border="0" />
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p align="center">A <a href="https://graphql.org/" target="_blank">GraphQL</a> APi for Bop-Consulting application.</p>
     <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Bop500 proposed architecture
+
+<img src="https://i.ibb.co/PZSkRWG/Nest-JS-APi-Architect-2.png" alt="Nest-JS-APi-Architect-2" border="0"><br />
+
+<h3>NestJS GraphQL APi architecture link:</h3>
+<a href="https://www.figma.com/file/qWNWiM5jmFhmCXHFp4pAhn/NestJS-APi-Architect?node-id=0%3A1"><img src="https://i.ibb.co/VCbKgyy/Group-3-1.png" alt="Group-3-1" border="0"></a>
+
+## GraphQL service browser
+<a href="https://bop-consulting.herokuapp.com/graphql" target="_blank">https://bop-consulting.herokuapp.com/graphql</a>
+
+## TYPES (CitiesModel):
+
+```graphql
+type CitiesModel {
+  city_id: Float!
+  city_name: String!
+  state_id: Float!
+  state_code: String!
+  city_nominatim: String!
+  state_name: String!
+  country_id: Float!
+  country_code: String!
+  country_name: String!
+  city_latitude: Float!
+  city_longitude: Float!
+  city_wikiDataId: String!
+  bop_wikiDataId: String!
+  city_population: String!
+  city_osm_id: Float!
+  city_administrative_level: Float
+}
+```
+
+## GET ENDPOINTS on GraphQL (Query)
+
+```graphql
+type Query {
+  // getAllCities query will return CitiesModel type data 
+  getAllCities: [CitiesModel!]!
+  // (city: String) is used as an argument on query which then filter out city that will be provided to the query
+  getCity(city: String!): CitiesModel
+}
+```
+
+## Query examples
+
+<p>You can copy and paste the following examples to query</p>
+<a href="https://bop-consulting.herokuapp.com/graphql" target="_blank">https://bop-consulting.herokuapp.com/graphql</a>
+
+### Example 1 (get all city and country data query)
+
+```graphql
+query {
+  getAllCities {
+    country_name
+    city_name
+    city_latitude
+    city_longitude
+    city_population
+    city_id
+    country_id
+    country_code
+    city_osm_id
+    city_nominatim
+    city_wikiDataId
+    city_administrative_level
+    state_id
+    state_code
+    state_name
+  }
+}
+```
+
+### Example 2 (get one city detail query)
+
+```graphql
+query {
+  getCity(city: "Seattle") {
+    country_name
+    city_name
+    city_latitude
+    city_longitude
+    city_population
+    city_id
+    country_id
+    country_code
+    city_osm_id
+    city_nominatim
+    city_wikiDataId
+    city_administrative_level
+    state_id
+    state_code
+    state_name
+  }
+}
+```
 
 ## Installation
 
 ```bash
-$ npm install
+$ npm install or yarn install
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ npm run start
+$ npm run start or yarn start
 
 # watch mode
-$ npm run start:dev
+$ npm run start:dev or yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ npm run start:prod or yarn start:prod
 ```
 
 ## Test
 
 ```bash
 # unit tests
-$ npm run test
+$ npm run test or yarn test
 
 # e2e tests
-$ npm run test:e2e
+$ npm run test:e2e or yarn test:e3e
 
 # test coverage
-$ npm run test:cov
+$ npm run test:cov or yarn test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).

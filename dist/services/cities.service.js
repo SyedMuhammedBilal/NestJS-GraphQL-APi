@@ -6,25 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.CitiesService = void 0;
 const common_1 = require("@nestjs/common");
-const graphql_1 = require("@nestjs/graphql");
-const apollo_1 = require("@nestjs/apollo");
-const cities_module_1 = require("./module/cities.module");
-let AppModule = class AppModule {
+const cities = require("../static/Bop500_City.json");
+let CitiesService = class CitiesService {
+    findAll() {
+        return cities;
+    }
+    findOneByName(cityName) {
+        return cities.find((city) => city.city_name === cityName);
+    }
 };
-AppModule = __decorate([
-    (0, common_1.Module)({
-        imports: [
-            cities_module_1.CitiesModule,
-            graphql_1.GraphQLModule.forRoot({
-                driver: apollo_1.ApolloDriver,
-                autoSchemaFile: 'src/schema/schema.gql',
-                introspection: true,
-                playground: true,
-            }),
-        ],
-    })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+CitiesService = __decorate([
+    (0, common_1.Injectable)()
+], CitiesService);
+exports.CitiesService = CitiesService;
+//# sourceMappingURL=cities.service.js.map

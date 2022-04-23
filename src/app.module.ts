@@ -8,7 +8,7 @@ import { CitiesModule } from './module/cities.module';
     CitiesModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: './schema/schema.gql',
+      autoSchemaFile: 'src/schema/schema.gql',
       introspection: true,
       playground: true,
     }),
